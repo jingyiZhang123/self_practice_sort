@@ -1,17 +1,20 @@
 CC=c99
 CFLAGS=-c -Wall
 
-all: clean insert_int
-	./insert_int
+all: clean main
+	./main
 
-insert_int: insert_int.o helper.o
-	$(CC) -o insert_int insert_int.o helper.o
+main: sortingalgo.o helper.o main.o
+	$(CC) -o main main.o sortingalgo.o helper.o
 
-insert_int.o:
-	$(CC) $(CFLAGS) insert_int.c
+sortingalgo.o:
+	$(CC) $(CFLAGS) sortingalgo.c
 
 helper.o:
 	$(CC) $(CFLAGS) helper.c
 
+main.o:
+	$(CC) $(CFLAGS) main.c
+
 clean:
-	rm -rf *.o insert_int
+	rm -rf *.o main
